@@ -1,5 +1,46 @@
 # React + TypeScript + Vite
 
+## Local Full-Stack Test Mode
+
+Run the frontend, API, migrations, and a live `users` table watcher in one command:
+
+```bash
+npm run dev:test
+```
+
+Prerequisites:
+- `api/.env` exists and has a valid `DATABASE_URL`
+- `psql` CLI is installed
+
+Stop everything with `Ctrl+C`.
+
+## Containerized Dev Environment (No local npm/psql required)
+
+You can run the full app stack in containers (frontend, API, Postgres), and the dev image includes the `psql` client.
+
+From the project root:
+
+```bash
+npm run dev:env:up
+```
+
+This starts:
+- `web` at `http://localhost:5173`
+- `api` at `http://localhost:4000`
+- `db` at `localhost:5433` (`postgres/postgres`, database `musichub`)
+
+Stop it with:
+
+```bash
+npm run dev:env:down
+```
+
+Run `psql` without local installation:
+
+```bash
+docker compose exec api psql "$DATABASE_URL"
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

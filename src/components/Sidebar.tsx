@@ -1,16 +1,5 @@
 import { useState } from "react"
-import {
-  Music,
-  Mic2,
-  Radio,
-  Sliders,
-  Waves,
-  Piano,
-  Drum,
-  Guitar,
-  Menu,
-  ChevronLeft,
-} from "lucide-react"
+import { Music, Menu, ChevronLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -21,68 +10,11 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "@/components/ui/tooltip"
-
-export interface Feature {
-  id: string
-  name: string
-  icon: React.ReactNode
-  description: string
-}
-
-const features: Feature[] = [
-  {
-    id: "home",
-    name: "Home",
-    icon: <Music className="size-5" />,
-    description: "Dashboard overview",
-  },
-  {
-    id: "mixer",
-    name: "Mixer",
-    icon: <Sliders className="size-5" />,
-    description: "Audio mixing console",
-  },
-  {
-    id: "synth",
-    name: "Synthesizer",
-    icon: <Waves className="size-5" />,
-    description: "Virtual synthesizers",
-  },
-  {
-    id: "sampler",
-    name: "Sampler",
-    icon: <Radio className="size-5" />,
-    description: "Sample library & player",
-  },
-  {
-    id: "recorder",
-    name: "Recorder",
-    icon: <Mic2 className="size-5" />,
-    description: "Audio recording",
-  },
-  {
-    id: "piano",
-    name: "Piano Roll",
-    icon: <Piano className="size-5" />,
-    description: "MIDI piano editor",
-  },
-  {
-    id: "drums",
-    name: "Drum Machine",
-    icon: <Drum className="size-5" />,
-    description: "Beat sequencer",
-  },
-  {
-    id: "guitar",
-    name: "Guitar Amp",
-    icon: <Guitar className="size-5" />,
-    description: "Amp & effects simulation",
-  },
-]
+import { features, type Feature, type FeatureId } from "@/features"
 
 interface SidebarProps {
-  activeFeature: string
-  onFeatureSelect: (id: string) => void
+  activeFeature: FeatureId
+  onFeatureSelect: (id: FeatureId) => void
 }
 
 export function Sidebar({ activeFeature, onFeatureSelect }: SidebarProps) {
@@ -190,6 +122,7 @@ function SidebarItem({
   expanded,
   onClick,
 }: SidebarItemProps) {
+  const Icon = feature.icon
   const button = (
     <Button
       variant="ghost"
@@ -200,7 +133,7 @@ function SidebarItem({
       )}
       onClick={onClick}
     >
-      {feature.icon}
+      <Icon className="size-5 shrink-0" />
       {expanded && <span className="truncate">{feature.name}</span>}
     </Button>
   )

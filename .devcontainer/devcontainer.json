@@ -1,0 +1,39 @@
+{
+  "name": "music-hub",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.yml"
+  ],
+  "service": "web",
+  "runServices": [
+    "db",
+    "api",
+    "web"
+  ],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "forwardPorts": [
+    5173,
+    "api:4000"
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite Frontend"
+    },
+    "4000": {
+      "label": "Hono API"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "mtxr.sqltools",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install && cd api && npm install",
+  "postStartCommand": "[ -e /.cursor ] || ln -s /root/.cursor /.cursor"
+}

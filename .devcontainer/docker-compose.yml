@@ -1,0 +1,10 @@
+services:
+  db:
+    ports: !reset []
+  api:
+    ports: !reset []
+  web:
+    ports: !reset []
+    command: sleep infinity
+    volumes:
+      - ${HOME}/.cursor/skills:/root/.cursor/skills

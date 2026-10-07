@@ -7,18 +7,69 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+.pnp
+.pnp.js
+.pnpm-store
+
+# Build / output
 dist
 dist-ssr
+build
+out
+*.tsbuildinfo
+
+# Local / env (keep committed templates)
 *.local
+.env
+.env.*
+!.env.example
+!.env.docker
+
+# Test / coverage
+coverage
+*.lcov
+.nyc_output
+
+# Caches
+.cache
+.vite
+.eslintcache
+.turbo
+.tmp
+tmp
+temp
+
+# Secrets / certs
+*.pem
+*.key
+
+# OS
+.DS_Store
+.DS_Store.*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*~
+*.orig
+
+# Python leftovers (local tooling)
+__pycache__/
+*.pyc
+.venv
+venv
+
+# Optional Docker / debug
+*.pid
+*.pid.lock
